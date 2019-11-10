@@ -1,7 +1,3 @@
-/**
- * @format
- */
-
 import React from 'react';
 // eslint-disable-next-line object-curly-spacing
 import {AppRegistry, Text} from 'react-native';

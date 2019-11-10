@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import Albums from './src/containers/index';
+import Albums from './src/index';
 
 const App = () => {
   return (
