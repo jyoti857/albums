@@ -10,8 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "immer": "^5.0.0",
     "react": "16.9.0",
-    "react-native": "0.61.4"
+    "react-native": "0.61.4",
+    "redux-dynamic-modules": "^5.2.0",
+    "redux-form": "^8.2.6"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",

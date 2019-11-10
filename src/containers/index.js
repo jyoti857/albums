@@ -1,13 +1,22 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import Headers from './components/Headers';
+import {DynamicModuleLoader} from 'redux-dynamic-modules';
 
-const Albums = () => (
-  <View>
-    <Headers>
-      <Text>Albums</Text>
-    </Headers>
-  </View>
-);
+import {Text, View} from 'react-native';
+import Headers from './components/Headers';
+import {getAlbumsModule} from './module';
+
+class Albums extends React.Component {
+  render() {
+    return (
+      //   <DynamicModuleLoader modules={getAlbumsModule()}>
+      <View>
+        <Headers>
+          <Text>Albums</Text>
+        </Headers>
+      </View>
+      //   </DynamicModuleLoader>
+    );
+  }
+}
 
 export default Albums;
