@@ -1,20 +1,13 @@
 import React from 'react';
-import {DynamicModuleLoader} from 'redux-dynamic-modules';
+import {Provider} from 'react-redux';
+import Albums from './containers/index';
+import store from './configuratorStore';
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Albums />
+    </Provider>
+  );
+};
 
-import {Text} from 'react-native';
-import Headers from './containers/components/Headers';
-import {getAlbumsModule} from './module';
-
-class Albums extends React.Component {
-  render() {
-    return (
-      <DynamicModuleLoader modules={getAlbumsModule()}>
-        <Headers>
-          <Text>Albums</Text>
-        </Headers>
-      </DynamicModuleLoader>
-    );
-  }
-}
-
-export default Albums;
+export default App;

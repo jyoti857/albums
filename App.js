@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import Albums from './src/index';
+import {View} from 'react-native';
+import App_ from './src/index';
 
 const App = () => {
   return (
     <View>
-      <Albums />
+      <App_ />
     </View>
   );
 };
