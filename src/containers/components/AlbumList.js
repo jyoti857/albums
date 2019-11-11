@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import request from '../../utils/request';
 
 import {View, Text, Image} from 'react-native';
-// import {TouchableRipple} from 'react-native-paper';
+import {TouchableRipple} from 'react-native-paper';
 
 const AlbumList = () => {
   const [albumList, setAlbumList] = useState([]);
