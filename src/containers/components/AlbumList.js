@@ -8,6 +8,7 @@ import {
   FlatList,
   ScrollView,
   StyleSheet,
+  Linking,
 } from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 import Card_ from './Card_';
@@ -46,11 +47,6 @@ const AlbumList = () => {
           return (
             <ScrollView>
               <Card_>
-                <View style={{alignItems: 'center'}}>
-                  <CardSection>
-                    <Text>{item.artist}</Text>
-                  </CardSection>
-                </View>
                 <CardSection>
                   <Image
                     style={{width: 100, height: 100, borderRadius: 20}}
@@ -59,9 +55,10 @@ const AlbumList = () => {
                   <TouchableRipple
                     onPress={() => console.log('Pressed')}
                     rippleColor="transparent">
-                    <Text style={{color: 'black', fontSize: 30, padding: 20}}>
-                      {item.title}
-                    </Text>
+                    <View>
+                      <Text style={styles.titleArtist}>{item.artist}</Text>
+                      <Text style={styles.titleArtist}>{item.title}</Text>
+                    </View>
                   </TouchableRipple>
                 </CardSection>
                 <CardSection>
@@ -77,7 +74,10 @@ const AlbumList = () => {
                   />
                 </CardSection>
                 <CardSection>
-                  <Button title="Buy now" />
+                  <Button
+                    title="Buy now"
+                    onPress={() => Linking.openURL(item.url)}
+                  />
                 </CardSection>
               </Card_>
             </ScrollView>
@@ -92,6 +92,11 @@ const AlbumList = () => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 200,
+  },
+  titleArtist: {
+    color: 'black',
+    fontSize: 30,
+    paddingHorizontal: 40,
   },
 });
 

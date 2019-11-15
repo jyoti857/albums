@@ -3,5 +3,9 @@ module.exports = {
   parser: 'babel-eslint',
   extends: ['@react-native-community'],
   //  'rallycoding'],
-  plugins: ['prettier']
+  plugins: ['prettier'],
+  // rules: ['no-inline-styles',]
+  "rules": {
+    "no-inline-style": 0
+  }
 };
