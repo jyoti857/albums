@@ -15,7 +15,6 @@ const Button_ = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     paddingBottom: 10,
     paddingTop: 10,
     paddingHorizontal: 30,

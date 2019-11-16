@@ -1,6 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-import App_ from './src/index';
+// import App_ from './src/index';
+import App_ from './src/router';
 
 const App = () => {
   return (
