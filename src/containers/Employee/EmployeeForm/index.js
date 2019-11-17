@@ -1,12 +1,30 @@
 import React, {useState} from 'react';
 import {CardSection} from '../../../Components/Card';
 import Input from '../../../Components/Input';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 import {Button} from 'react-native-paper';
+import firebase from 'firebase';
 
-const EmployeeForm = () => {
+const EmployeeForm = ({navigation}) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const onButtonPressed = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(userName, password)
+      .then(() => navigation.navigate('Album'))
+      .catch(() => {
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(userName, password)
+          .then(() => navigation.navigate('Album'))
+          .catch(() => {
+            setError('Authentication Failed!');
+          });
+      });
+    // navigation.navigate('Album');
+  };
   return (
     <View>
       <CardSection>
@@ -20,8 +38,9 @@ const EmployeeForm = () => {
           onChangeText={setPassword}
           placeholder="Password"
         />
+        {error ? <Text>{error}</Text> : null}
       </CardSection>
-      <Button>Submit</Button>
+      <Button onPress={onButtonPressed}>Submit</Button>
     </View>
   );
 };
