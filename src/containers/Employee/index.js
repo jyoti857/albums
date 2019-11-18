@@ -2,6 +2,12 @@ import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import EmployeeForm from './EmployeeForm';
 import firebase from 'firebase';
+import {createStore, applyMiddleware} from 'redux';
+import {rootReducers} from '../../reducers';
+import thunk from 'redux-thunk';
+import {Provider} from 'react-redux';
+
+const store = createStore(rootReducers, applyMiddleware(thunk));
 
 const Employee = ({navigation}) => {
   useEffect(() => {
@@ -18,9 +24,9 @@ const Employee = ({navigation}) => {
     !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
   }, []);
   return (
-    <View>
+    <Provider store={store}>
       <EmployeeForm navigation={navigation} />
-    </View>
+    </Provider>
   );
 };
 

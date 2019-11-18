@@ -1,7 +1,11 @@
+import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import AlbumScreen from '../containers/Album';
 import EmployeeScreen from '../containers/Employee';
+import CreateEmployeeScreen from '../containers/Employee/CreateEmployee';
+import {setTopLevelNavigator} from '../../src/NavigationService';
+import EmployeeDetailsScreen from '../containers/Employee/EmployeeDetails';
 
 const MainNavigator = createStackNavigator({
   Album: {
@@ -16,13 +20,26 @@ const MainNavigator = createStackNavigator({
       headerTitle: 'Employee',
     },
   },
-  // navigationOptions: ({navigation}) => {
-  //   const {routeName} = navigation.state.routes[navigation.state.index];
-  //   console.log('this is the route name ----->', routeName);
-  //   return {headerTitle: routeName};
-  // },
+  EmployeeDetails: {
+    screen: EmployeeDetailsScreen,
+    navigationOptions: {
+      headerTitle: 'Employee Details',
+    },
+  },
+  CreateEmployee: {
+    screen: CreateEmployeeScreen,
+    navigationOptions: {
+      headerTitle: 'Create Employee',
+    },
+  },
 });
 
 const App = createAppContainer(MainNavigator);
 
-export default App;
+export default () => (
+  <App
+    ref={navigator => {
+      setTopLevelNavigator(navigator);
+    }}
+  />
+);

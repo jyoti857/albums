@@ -5,7 +5,7 @@ module.exports = {
   //  'rallycoding'],
   plugins: ['prettier'],
   // rules: ['no-inline-styles',]
-  "rules": {
+  rules: {
     "no-inline-style": 0
   }
 };
