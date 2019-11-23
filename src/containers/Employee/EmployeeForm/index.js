@@ -3,7 +3,6 @@ import {CardSection} from '../../../Components/Card';
 import Input from '../../../Components/Input';
 import {View, Text} from 'react-native';
 import {Button} from 'react-native-paper';
-import firebase from 'firebase';
 import {signin, userNameChanged, passwordChanged} from '../actions';
 import {connect} from 'react-redux';
 
@@ -18,22 +17,26 @@ const EmployeeForm = props => {
     onSuccess,
     onFailure,
   } = props;
-  console.log('from Employee from ------> ', userName, password);
+  //   console.log('from Employee from ------> ', userName, password);
   return (
     <View>
       {/* <CardSection> */}
-      <Input
-        value={userName}
-        onChangeText={userNameChanged}
-        placeholder="User name"
-        label="user name"
-      />
-      <Input
-        value={password}
-        onChangeText={passwordChanged}
-        placeholder="Password"
-        label="password"
-      />
+      <View style={{margin: 30}}>
+        <Input
+          value={userName}
+          onChangeText={userNameChanged}
+          placeholder="User name"
+          label="user name"
+        />
+      </View>
+      <View>
+        <Input
+          value={password}
+          onChangeText={passwordChanged}
+          placeholder="Password"
+          label="password"
+        />
+      </View>
       {onFailure ? (
         <Text
           style={{

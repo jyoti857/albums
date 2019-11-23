@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import EmployeeForm from './EmployeeForm';
+import CreateEmployeeForm from './CreateEmployee';
 import firebase from 'firebase';
 import {createStore, applyMiddleware} from 'redux';
 import {rootReducers} from '../../reducers';

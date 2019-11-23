@@ -6,6 +6,13 @@ import EmployeeScreen from '../containers/Employee';
 import CreateEmployeeScreen from '../containers/Employee/CreateEmployee';
 import {setTopLevelNavigator} from '../../src/NavigationService';
 import EmployeeDetailsScreen from '../containers/Employee/EmployeeDetails';
+import {Button} from 'react-native-paper';
+
+//------
+import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import {rootReducers} from '../reducers';
+import {createStore, applyMiddleware} from 'redux';
 
 const MainNavigator = createStackNavigator({
   Album: {
@@ -22,9 +29,14 @@ const MainNavigator = createStackNavigator({
   },
   EmployeeDetails: {
     screen: EmployeeDetailsScreen,
-    navigationOptions: {
+    navigationOptions: ({navigation}) => ({
       headerTitle: 'Employee Details',
-    },
+      headerRight: (
+        <Button onPress={() => navigation.navigate('CreateEmployee')}>
+          Add
+        </Button>
+      ),
+    }),
   },
   CreateEmployee: {
     screen: CreateEmployeeScreen,
@@ -35,11 +47,13 @@ const MainNavigator = createStackNavigator({
 });
 
 const App = createAppContainer(MainNavigator);
-
+const store = createStore(rootReducers, applyMiddleware(thunk));
 export default () => (
-  <App
-    ref={navigator => {
-      setTopLevelNavigator(navigator);
-    }}
-  />
+  <Provider store={store}>
+    <App
+      ref={navigator => {
+        setTopLevelNavigator(navigator);
+      }}
+    />
+  </Provider>
 );

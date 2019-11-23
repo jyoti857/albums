@@ -1,26 +1,29 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, Picker} from 'react-native';
 import Input from '../../../Components/Input';
+import {Button} from 'react-native-paper';
+import {connect} from 'react-redux';
 
-const EmployeeDetails = () => {
-  const employeeDetails = 'Employee details';
+const EmployeeDetails = props => {
+  const {name, phone, shift} = props;
   return (
     <View>
-      <Text>{employeeDetails}</Text>
-      <Input
-        label="name"
-        value=""
-        onChangeText={() => {}}
-        placeholder="placeholder"
-      />
-      <Input
-        label="Phone"
-        value="emio"
-        onChangeText={() => {}}
-        placeholder="placeholder"
-      />
+      <Text>
+        EmployeeDetails
+        {name}
+        {phone}
+        {shift}
+      </Text>
     </View>
   );
 };
+// const styles = StyleSheet.create({
 
-export default EmployeeDetails;
+// });
+
+const mapStateToProps = state => ({
+  name: state.createEmployee.name,
+  phone: state.createEmployee.phone,
+  shift: state.createEmployee.shift,
+});
+export default connect(mapStateToProps, null)(EmployeeDetails);
