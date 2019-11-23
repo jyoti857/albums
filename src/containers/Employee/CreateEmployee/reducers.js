@@ -31,9 +31,9 @@ const EmployeeDetailsStore = (state = initialState, action) => {
     case CREATE_EMPLOYEE: {
       return {
         ...state,
-        name: action.name,
-        phone: action.phone,
-        shift: action.shift,
+        name: '',
+        phone: '',
+        shift: '',
       };
     }
     default:

@@ -24,7 +24,7 @@ export const shift_changed = payload => dispatch =>
   });
 
 export const create_employee = (name, phone, shift) => dispatch => {
-  navigate('EmployeeDetails');
+  // navigate('EmployeeDetails');
   console.log('employee logs #*&*&#*&#*$--------->', name, phone, shift);
   //   return dispatch({
   //     type: CREATE_EMPLOYEE,
@@ -37,5 +37,11 @@ export const create_employee = (name, phone, shift) => dispatch => {
   firebase
     .database()
     .ref(`/users/${currentUser.uid}/employees`)
-    .push({name, phone, shift});
+    .push({name, phone, shift})
+    .then(() => {
+      navigate('EmployeeDetails');
+      return dispatch({
+        type: CREATE_EMPLOYEE,
+      });
+    });
 };
