@@ -6,6 +6,8 @@ module.exports = {
   plugins: ['prettier'],
   // rules: ['no-inline-styles',]
   rules: {
-    "no-inline-style": 0
+    // "no-inline-styles": "off",
+    "react-native/no-inline-styles": 0,
+    "no-shadow": [0, { "builtinGlobals": false, "hoist": "functions", "allow": [] }]
   }
 };

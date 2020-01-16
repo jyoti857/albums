@@ -5,10 +5,7 @@ const initialState = {};
 const employeeReducers = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_EMPLOYEES:
-      console.log('from employee reducers *(#$*(#*---> ', action);
-      return {
-        ...state,
-      };
+      return action.payload;
     default:
       return state;
   }

@@ -3,6 +3,7 @@ import {
   PHONE_CHANGED,
   SHIFT_CHANGED,
   CREATE_EMPLOYEE,
+  UPDATE_EMPLOYEE,
 } from './constants';
 
 const initialState = {
@@ -34,6 +35,12 @@ const EmployeeDetailsStore = (state = initialState, action) => {
         name: '',
         phone: '',
         shift: '',
+      };
+    }
+    case UPDATE_EMPLOYEE: {
+      return {
+        ...state,
+        [action.payload.prop]: action.payload.value,
       };
     }
     default:

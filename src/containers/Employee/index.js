@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
-import EmployeeForm from './EmployeeForm';
+import AuthForm from './AuthForm';
 import CreateEmployeeForm from './CreateEmployee';
 import firebase from 'firebase';
 import {createStore, applyMiddleware} from 'redux';
@@ -26,7 +26,7 @@ const Employee = ({navigation}) => {
   }, []);
   return (
     <Provider store={store}>
-      <EmployeeForm navigation={navigation} />
+      <AuthForm navigation={navigation} />
     </Provider>
   );
 };

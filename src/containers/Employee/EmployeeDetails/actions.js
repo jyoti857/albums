@@ -1,5 +1,6 @@
 import {FETCH_EMPLOYEES} from './constants';
 import firebase from 'firebase';
+import {navigate} from '../../../NavigationService';
 
 export const fetch_employees = () => dispatch => {
   const {currentUser} = firebase.auth();

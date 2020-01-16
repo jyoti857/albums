@@ -1,82 +1,72 @@
-import React, {useState} from 'react';
-import {CardSection} from '../../../Components/Card';
+import React from 'react';
+import {View, Picker} from 'react-native';
 import Input from '../../../Components/Input';
-import {View, Text} from 'react-native';
 import {Button} from 'react-native-paper';
-import {signin, userNameChanged, passwordChanged} from '../actions';
 import {connect} from 'react-redux';
+import {
+  name_changed,
+  phone_changed,
+  shift_changed,
+  create_employee,
+  save_employee,
+} from '../CreateEmployee/actions';
 
 const EmployeeForm = props => {
   const {
-    navigation,
-    signin,
-    userNameChanged,
-    passwordChanged,
-    userName,
-    password,
-    onSuccess,
-    onFailure,
+    name,
+    phone,
+    shift,
+    name_changed,
+    phone_changed,
+    shift_changed,
+    create_employee,
+    create_or_update,
   } = props;
-  //   console.log('from Employee from ------> ', userName, password);
+
   return (
     <View>
-      {/* <CardSection> */}
-      <View style={{margin: 30}}>
-        <Input
-          value={userName}
-          onChangeText={userNameChanged}
-          placeholder="User name"
-          label="user name"
-        />
-      </View>
-      <View>
-        <Input
-          value={password}
-          onChangeText={passwordChanged}
-          placeholder="Password"
-          label="password"
-        />
-      </View>
-      {onFailure ? (
-        <Text
-          style={{
-            color: 'red',
-            alignSelf: 'center',
-            margin: 10,
-            fontSize: 30,
-          }}>
-          {onFailure}
-        </Text>
-      ) : (
-        <Text
-          style={{
-            color: 'green',
-            alignSelf: 'center',
-            margin: 10,
-            fontSize: 30,
-          }}>
-          {onSuccess.user ? onSuccess.user.uid : ''}
-        </Text>
-      )}
-      {/* {onSuccess ? <Text>{onSuccess}</Text> : null} */}
-      {/* </CardSection> */}
-      <Button onPress={() => signin(userName, password)}>Submit</Button>
+      <Input
+        label="name"
+        value={name}
+        onChangeText={name_changed}
+        placeholder="name"
+      />
+      <Input
+        label="Phone"
+        value={phone}
+        onChangeText={phone_changed}
+        placeholder="phone"
+      />
+      <Picker
+        selectedValue=""
+        style={{height: 60, width: 100, alignSelf: 'center'}}
+        onValueChange={value => shift_changed(value)}>
+        <Picker.Item label="Monday" value="Monday" />
+        <Picker.Item label="Tuesday" value="Tuesday" />
+        <Picker.Item label="Wednesday" value="Wednesday" />
+        <Picker.Item label="Thrusday" value="Thrusday" />
+        <Picker.Item label="Friday" value="Friday" />
+        <Picker.Item label="Saturday" value="Saturday" />
+        <Picker.Item label="Sunday" value="Sunday" />
+      </Picker>
+      {create_or_update === 'create' ? (
+        <Button
+          style={{margin: 170, width: 100, alignSelf: 'center'}}
+          onPress={() => create_employee(name, phone, shift)}>
+          Create
+        </Button>
+      ) : null}
     </View>
   );
 };
-
-const mapStateToProps = state => ({
-  userName: state.auth.userName,
-  password: state.auth.password,
-  onSuccess: state.auth.onSuccess,
-  onFailure: state.auth.onFailure,
-});
-// const mapDispatchToProps = dispatch => ({
-//   signin: (userName, password) => dispatch(signin(userName, password)),
-// });
+const mapStateToProps = state => {
+  const {name, phone, shift} = state.createEmployee;
+  return {name, phone, shift};
+};
 
 export default connect(mapStateToProps, {
-  signin,
-  userNameChanged,
-  passwordChanged,
+  name_changed,
+  phone_changed,
+  shift_changed,
+  create_employee,
 })(EmployeeForm);

@@ -4,6 +4,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import AlbumScreen from '../containers/Album';
 import EmployeeScreen from '../containers/Employee';
 import CreateEmployeeScreen from '../containers/Employee/CreateEmployee';
+import UpdateEmployeeScreen from '../containers/Employee/UpdateEmployee';
 import {setTopLevelNavigator} from '../../src/NavigationService';
 import EmployeeDetailsScreen from '../containers/Employee/EmployeeDetails';
 import {Button} from 'react-native-paper';
@@ -42,6 +43,12 @@ const MainNavigator = createStackNavigator({
     screen: CreateEmployeeScreen,
     navigationOptions: {
       headerTitle: 'Create Employee',
+    },
+  },
+  UpdateEmployee: {
+    screen: UpdateEmployeeScreen,
+    navigationOptions: {
+      headerTitle: 'Update Employee',
     },
   },
 });
